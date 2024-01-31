@@ -32,11 +32,23 @@ app.get('/math/:num1/:op/:num2', (req, res)=> {
 app.get('/pandorasbox', (req, res)=> {
 
     // do the work
-    //const message = "DAD JOKE"
-    const length = facts.length;
-    const random =  Math.floor( Math.random() * length)
-    const fact4 = facts[random].fact
 
-    res.render('pandorasbox', {title: "Pandora's Box", message:fact4} )
+    fetch("https://icanhazdadjoke.com/", { 
+        headers: {
+            "Accept": "application/json"
+        }
+        })
+        .then( res => res.json() )
+        .then( (data) => {
+            console.log(data)
+            res.render('pandorasbox', {title: "Pandora's Box", message: data.joke} )
+        })
+
+    //const message = "DAD JOKE"
+    // const length = facts.length;
+    // const random =  Math.floor( Math.random() * length)
+    // const fact4 = facts[random].fact
+
+    // res.render('pandorasbox', {title: "Pandora's Box", message:fact4} )
 
 })
