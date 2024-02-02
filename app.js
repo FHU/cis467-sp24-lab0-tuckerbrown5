@@ -1,8 +1,8 @@
 const facts = require('./facts.json')
-
-
 const express = require('express')
 const app = express()
+
+app.use(express.static('public'));
 
 const PORT = process.env.PORT || "3000"
 
@@ -14,7 +14,7 @@ app.listen(PORT, ()=> {
 
 app.get("/", (req, res) => {
 
-    res.send("Good Job!")
+    res.send("Welcome the Lab0 for CIS467! This is the home page and it contains the following routes: /greet, /math, /pandorasbox")
 
 })
 
@@ -52,6 +52,7 @@ app.get('/math/:num1/:op/:num2', (req, res) => {
     }
 
     res.send(`${result}`);
+    
 });
 
 // Pandora's Box Function (Random Dad Joke or Random Fact)
