@@ -24,8 +24,14 @@ app.get("/", (req, res) => {
 app.get('/greet', (req, res) => {
     const currentYear = new Date().getFullYear();
     const age = currentYear - req.query.year;
-    res.send(`Hello, ${req.query.name}! You are ${age} or ${age - 1} years old.`);
+    // Use res.render to render the greet.ejs template
+    res.render('greet', {
+        title: 'Greeting Page', // You can customize the title as needed
+        message: `Hello, ${req.query.name}! You are ${age} or ${age - 1} years old.` // Construct the message here
+    });
 });
+
+
 
 //  Math Operations 
 // http://localhost:3000/math/5/add/3
@@ -33,27 +39,41 @@ app.get('/math/:num1/:op/:num2', (req, res) => {
     const num1 = parseInt(req.params.num1);
     const num2 = parseInt(req.params.num2);
     let result;
+    let operation = 'Result';
 
     switch(req.params.op) {
         case 'add':
             result = num1 + num2;
+            operation = 'Addition';
             break;
         case 'subtract':
             result = num1 - num2;
+            operation = 'Subtraction';
             break;
         case 'multiply':
             result = num1 * num2;
+            operation = 'Multiplication';
             break;
         case 'divide':
-            result = num1 / num2;
+            if(num2 === 0) {
+                result = 'Cannot divide by zero';
+            } else {
+                result = num1 / num2;
+            }
+            operation = 'Division';
             break;
         default:
             result = 'Invalid operation';
+            operation = 'Error';
     }
 
-    res.send(`${result}`);
-    
+    // Use res.render to render the math.ejs template
+    res.render('math', {
+        title: `${operation}`, // Customize the title based on the operation
+        message: `The result is ${result}.` // Display the result
+    });
 });
+
 
 // Pandora's Box Function (Random Dad Joke or Random Fact)
 // http://localhost:3000/pandorasbox (then reload the page to see the random fact or dad joke)
