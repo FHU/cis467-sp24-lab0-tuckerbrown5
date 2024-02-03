@@ -1,10 +1,33 @@
-*{
-    color: white;
-    background-color: grey;
-    text-align: center;
-    vertical-align: middle;
-    font-family: 'Arial', sans-serif;
-    font-size: 50px;
+
+* {
     margin: 0;
     padding: 0;
+}
+
+
+html, body {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: grey;
+}
+
+
+h1 {
+    color: white;
+    text-align: center;
+    font-family: 'Arial', sans-serif;
+    font-size: 50px;
+    margin-bottom: 30px; /* Adjust space below h1 as needed */
+}
+
+
+p { 
+    color: white;
+    text-align: center;
+    font-family: 'Arial', sans-serif;
+    font-size: 20px;
+    padding: 10px; /* Adjust padding as needed */
 }
